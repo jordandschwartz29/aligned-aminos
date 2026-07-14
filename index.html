@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aligned Aminos — Research-Grade Peptides</title>
+<meta name="description" content="Research-grade peptides. Lyophilized, third-party verified, lot-traceable. Laboratory research use only." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- RUO ribbon -->
+<div class="ruo-strip">Research-Use-Only · Not for human consumption</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="brand__mark">A</span>
+      <span class="brand__name">Aligned Aminos <small>Research Peptides</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+    <nav class="nav" id="nav">
+      <a href="catalog.html">Catalog</a>
+      <a href="#contact">Contact</a>
+      <a class="nav__order" href="catalog.html#cart">Order <span class="count" data-cart-count>0</span></a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__inner">
+      <span class="badge">Research-Use-Only</span>
+      <h1>Peptides are <em>amplifiers.</em><br />Not substitutes.</h1>
+      <p class="lede">Lyophilized, third-party verified, lot-traceable research compounds — vetted by founders who run the protocols before anything ships.</p>
+      <div class="hero__cta">
+        <a class="btn btn--accent" href="catalog.html">Browse the catalog →</a>
+        <a class="btn btn--ghost" href="#contact">Have a question? Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- By the numbers -->
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">By the Numbers</p>
+      <h2>Quietly stacking the case.</h2>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat__num">15<span>+</span></div>
+        <div class="stat__label">Protocols run by founders</div>
+        <div class="stat__sub">Personally, before any vial ships</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">10<span> yrs</span></div>
+        <div class="stat__label">Years coaching combined</div>
+        <div class="stat__sub">Aligned Strength heritage</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">18<span> mo</span></div>
+        <div class="stat__label">Supplier vetting</div>
+        <div class="stat__sub">Before the brand launched</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">80<span>%</span></div>
+        <div class="stat__label">Customer reorder rate</div>
+        <div class="stat__sub">First to second order</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">In Their Words</p>
+      <h2>What customers are telling us.</h2>
+    </div>
+    <div class="quotes">
+      <figure class="quote">
+        <div class="mark">“</div>
+        <blockquote>That was the easiest experience I've ever had ordering peptides.</blockquote>
+        <cite>DW · Verified customer</cite>
+      </figure>
+      <figure class="quote">
+        <div class="mark">“</div>
+        <blockquote>Thank you so much. Our package arrived today — I so appreciate you guys.</blockquote>
+        <cite>JG · Verified customer</cite>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- The Rule -->
+<section class="rule-band">
+  <div class="wrap">
+    <p class="eyebrow" style="color:#c9d6c0;">The Rule</p>
+    <p>Peptides are <em>amplifiers</em>, not substitutes.</p>
+  </div>
+</section>
+
+<!-- Inquire / Contact -->
+<section class="section section--alt" id="contact">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">Inquire</p>
+      <h2>Have questions, or looking to start a conversation? We respond personally.</h2>
+    </div>
+    <div class="form-card">
+      <form id="inquiry-form" onsubmit="return AA.submitInquiry(event)">
+        <div class="form-grid">
+          <div class="field">
+            <label>Name *</label>
+            <input type="text" name="name" required />
+          </div>
+          <div class="field">
+            <label>Email *</label>
+            <input type="email" name="email" required />
+          </div>
+          <div class="field">
+            <label>Phone <span class="opt">— Optional</span></label>
+            <input type="tel" name="phone" />
+          </div>
+          <div class="field">
+            <label>Instagram handle <span class="opt">— Optional</span></label>
+            <input type="text" name="instagram" />
+          </div>
+          <div class="field">
+            <label>How did you find us? <span class="opt">— Optional</span></label>
+            <select name="source">
+              <option value="">Select one</option>
+              <option>Instagram</option>
+              <option>Referral / Word of mouth</option>
+              <option>Search</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Where are you at with peptides? <span class="opt">— Optional</span></label>
+            <select name="experience">
+              <option value="">Select one</option>
+              <option>New to peptides</option>
+              <option>Some experience</option>
+              <option>Currently running protocols</option>
+              <option>Just learning / curious</option>
+            </select>
+          </div>
+          <div class="field field--full">
+            <label>What's on your mind? <span class="opt">— Optional, but helpful</span></label>
+            <textarea name="message"></textarea>
+          </div>
+          <!-- honeypot -->
+          <div class="honeypot" aria-hidden="true">
+            <label>Don't fill this out if you're human:</label>
+            <input type="text" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+        </div>
+        <div style="margin-top:22px;">
+          <button type="submit" class="btn btn--accent">Send →</button>
+        </div>
+        <p class="form-foot">Research-use-only · We respond within 24 hours.<br />
+          Prefer email? <a href="mailto:Alignedaminos@proton.me">Alignedaminos@proton.me</a></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-col">
+      <span class="brand__name">Aligned Aminos</span>
+      <p style="color:#9a9c8e;font-size:13px;max-width:240px;margin-top:10px;">Research-grade peptides for laboratory use. Lot-traceable, third-party verified.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="catalog.html">Catalog</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="catalog.html#cart">Your order</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:Alignedaminos@proton.me">Alignedaminos@proton.me</a></li>
+        <li>Response within 24 hours</li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      © <span id="year"></span> Aligned Aminos · All compounds RUO · Not for human consumption
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

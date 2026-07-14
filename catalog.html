@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Catalog — Aligned Aminos</title>
+<meta name="description" content="The lineup. Lyophilized, third-party verified, lot-traceable research compounds. Laboratory research use only." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="ruo-strip">Research-Use-Only · Not for human consumption</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="brand__mark">A</span>
+      <span class="brand__name">Aligned Aminos <small>Research Peptides</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+    <nav class="nav" id="nav">
+      <a href="catalog.html">Catalog</a>
+      <a href="#contact">Contact</a>
+      <a class="nav__order" href="#" onclick="AA.openCart();return false;">Order <span class="count" data-cart-count>0</span></a>
+    </nav>
+  </div>
+</header>
+
+<!-- Catalog intro -->
+<section class="section catalog-intro">
+  <div class="wrap">
+    <p class="eyebrow">Catalog · Research Compounds</p>
+    <h1 style="font-size:clamp(2rem,5vw,3.2rem);">The lineup.</h1>
+    <p style="max-width:620px;">Lyophilized, third-party verified, lot-traceable. Every batch tested for purity, identity, and endotoxin before it leaves the supplier.</p>
+
+    <div class="disclaimer">
+      <strong>Laboratory research use only · Not for human consumption.</strong>
+      Pricing and purity values shown are for the current production lot. Per-batch certificate of analysis available on request. All compounds shipped as lyophilized powder, sealed under nitrogen. Allow 2–4 weeks for delivery.
+    </div>
+
+    <!-- Category nav -->
+    <nav class="cat-nav" id="cat-nav">
+      <a href="#all" class="active" data-cat="all">All categories</a>
+      <a href="#metabolic" data-cat="metabolic">Metabolic</a>
+      <a href="#recovery" data-cat="recovery">Recovery &amp; Repair</a>
+      <a href="#longevity" data-cat="longevity">Longevity</a>
+      <a href="#blends" data-cat="blends">Blends</a>
+    </nav>
+    <a class="btn btn--ghost btn--sm" href="#contact" style="margin-top:6px;">Questions? Get in touch →</a>
+
+    <!-- ================= PRODUCT GRID =================
+         PLACEHOLDER CATALOG — swap these cards when your real
+         catalog is ready. Each .product needs:
+           data-id, data-name, data-price, data-cat
+    ================================================== -->
+    <div id="catalog-root">
+
+      <div class="cat-group" data-group="metabolic">
+        <div class="cat-group__title"><h2>Metabolic</h2><span>Research series</span></div>
+        <div class="grid">
+
+          <article class="product" data-id="AA-01" data-name="Compound M-1" data-price="68" data-cat="metabolic">
+            <div class="product__tag">Metabolic</div>
+            <h3>Compound&nbsp;M-1</h3>
+            <div class="subtitle">Placeholder — replace with real product</div>
+            <div class="product__spec">
+              <dl>
+                <dt>Presentation</dt><dd>5&nbsp;mg vial</dd>
+                <dt>Purity</dt><dd>≥ 99.0%</dd>
+                <dt>Form</dt><dd>Lyophilized</dd>
+              </dl>
+              <div class="product__buy">
+                <div class="product__price">$68 <small>/ vial</small></div>
+                <button class="btn btn--sm" onclick="AA.add(this)">Add to order</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-id="AA-02" data-name="Compound M-2" data-price="82" data-cat="metabolic">
+            <div class="product__tag">Metabolic</div>
+            <h3>Compound&nbsp;M-2</h3>
+            <div class="subtitle">Placeholder — replace with real product</div>
+            <div class="product__spec">
+              <dl>
+                <dt>Presentation</dt><dd>10&nbsp;mg vial</dd>
+                <dt>Purity</dt><dd>≥ 99.2%</dd>
+                <dt>Form</dt><dd>Lyophilized</dd>
+              </dl>
+              <div class="product__buy">
+                <div class="product__price">$82 <small>/ vial</small></div>
+                <button class="btn btn--sm" onclick="AA.add(this)">Add to order</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-id="AA-03" data-name="Compound M-3" data-price="95" data-cat="metabolic">
+            <div class="product__tag">Metabolic</div>
+            <h3>Compound&nbsp;M-3</h3>
+            <div class="subtitle">Placeholder — replace with real product</div>
+            <div class="product__spec">
+              <dl>
+                <dt>Presentation</dt><dd>5&nbsp;mg vial</dd>
+                <dt>Purity</dt><dd>≥ 99.0%</dd>
+                <dt>Form</dt><dd>Lyophilized</dd>
+              </dl>
+              <div class="product__buy">
+                <div class="product__price">$95 <small>/ vial</small></div>
+                <button class="btn btn--sm" onclick="AA.add(this)">Add to order</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="cat-group" data-group="recovery">
+        <div class="cat-group__title"><h2>Recovery &amp; Repair</h2><span>Research series</span></div>
+        <div class="grid">
+
+          <article class="product" data-id="AA-04" data-name="Compound R-1" data-price="74" data-cat="recovery">
+            <div class="product__tag">Recovery</div>
+            <h3>Compound&nbsp;R-1</h3>
+            <div class="subtitle">Placeholder — replace with real product</div>
+            <div class="product__spec">
+              <dl>
+                <dt>Presentation</dt><dd>10&nbsp;mg vial</dd>
+                <dt>Purity</dt><dd>≥ 99.1%</dd>
+                <dt>Form</dt><dd>Lyophilized</dd>
+              </dl>
+              <div class="product__buy">
+                <div class="product__price">$74 <small>/ vial</small></div>
+                <button class="btn btn--sm" onclick="AA.add(this)">Add to order</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-id="AA-05" data-name="Compound R-2" data-price="120" data-cat="recovery">
+            <div class="product__tag">Recovery</div>
+            <h3>Compound&nbsp;R-2</h3>
+            <div class="subtitle">Placeholder — replace with real product</div>
+            <div class="product__spec">
+              <dl>
+                <dt>Presentation</dt><dd>15&nbsp;mg vial</dd>
+                <dt>Purity</dt><dd>≥ 99.4%</dd>
+                <dt>Form</dt><dd>Lyophilized</dd>
+              </dl>
+              <div class="product__buy">
+                <div class="product__price">$120 <small>/ vial</small></div>
+                <button class="btn btn--sm" onclick="AA.add(this)">Add to order</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-id="AA-06" data-name="Compound R-3" data-price="88" data-cat="recovery">
+            <div class="product__tag">Recovery</div>
+            <h3>Compound&nbsp;R-3</h3>
+            <div class="subtitle">Placeholder — replace with real product</div>
+            <div class="product__spec">
+              <dl>
+                <dt>Presentation</dt><dd>5&nbsp;mg vial</dd>
+                <dt>Purity</dt><dd>≥ 99.0%</dd>
+                <dt>Form</dt><dd>Lyophilized</dd>
+              </dl>
+              <div class="product__buy">
+                <div class="product__price">$88 <small>/ vial</small></div>
+                <button class="btn btn--sm" onclick="AA.add(this)">Add to order</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="cat-group" data-group="longevity">
+        <div class="cat-group__title"><h2>Longevity</h2><span>Research series</span></div>
+        <div class="grid">
+
+          <article class="product" data-id="AA-07" data-name="Compound L-1" data-price="140" data-cat="longevity">
+            <div class="product__tag">Longevity</div>
+            <h3>Compound&nbsp;L-1</h3>
+            <div class="subtitle">Placeholder — replace with real product</div>
+            <div class="product__spec">
+              <dl>
+                <dt>Presentation</dt><dd>10&nbsp;mg vial</dd>
+                <dt>Purity</dt><dd>≥ 99.3%</dd>
+                <dt>Form</dt><dd>Lyophilized</dd>
+              </dl>
+              <div class="product__buy">
+                <div class="product__price">$140 <small>/ vial</small></div>
+                <button class="btn btn--sm" onclick="AA.add(this)">Add to order</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-id="AA-08" data-name="Compound L-2" data-price="165" data-cat="longevity">
+            <div class="product__tag">Longevity</div>
+            <h3>Compound&nbsp;L-2</h3>
+            <div class="subtitle">Placeholder — replace with real product</div>
+            <div class="product__spec">
+              <dl>
+                <dt>Presentation</dt><dd>2&nbsp;mg vial</dd>
+                <dt>Purity</dt><dd>≥ 99.5%</dd>
+                <dt>Form</dt><dd>Lyophilized</dd>
+              </dl>
+              <div class="product__buy">
+                <div class="product__price">$165 <small>/ vial</small></div>
+                <button class="btn btn--sm" onclick="AA.add(this)">Add to order</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-id="AA-09" data-name="Compound L-3" data-price="110" data-cat="longevity">
+            <div class="product__tag">Longevity</div>
+            <h3>Compound&nbsp;L-3</h3>
+            <div class="subtitle">Placeholder — replace with real product</div>
+            <div class="product__spec">
+              <dl>
+                <dt>Presentation</dt><dd>5&nbsp;mg vial</dd>
+                <dt>Purity</dt><dd>≥ 99.1%</dd>
+                <dt>Form</dt><dd>Lyophilized</dd>
+              </dl>
+              <div class="product__buy">
+                <div class="product__price">$110 <small>/ vial</small></div>
+                <button class="btn btn--sm" onclick="AA.add(this)">Add to order</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="cat-group" data-group="blends">
+        <div class="cat-group__title"><h2>Blends</h2><span>Research series</span></div>
+        <div class="grid">
+
+          <article class="product" data-id="AA-10" data-name="Blend B-1" data-price="180" data-cat="blends">
+            <div class="product__tag">Blend</div>
+            <h3>Blend&nbsp;B-1</h3>
+            <div class="subtitle">Placeholder — replace with real product</div>
+            <div class="product__spec">
+              <dl>
+                <dt>Presentation</dt><dd>Dual vial</dd>
+                <dt>Purity</dt><dd>≥ 99.0%</dd>
+                <dt>Form</dt><dd>Lyophilized</dd>
+              </dl>
+              <div class="product__buy">
+                <div class="product__price">$180 <small>/ kit</small></div>
+                <button class="btn btn--sm" onclick="AA.add(this)">Add to order</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-id="AA-11" data-name="Blend B-2" data-price="210" data-cat="blends">
+            <div class="product__tag">Blend</div>
+            <h3>Blend&nbsp;B-2</h3>
+            <div class="subtitle">Placeholder — replace with real product</div>
+            <div class="product__spec">
+              <dl>
+                <dt>Presentation</dt><dd>Dual vial</dd>
+                <dt>Purity</dt><dd>≥ 99.2%</dd>
+                <dt>Form</dt><dd>Lyophilized</dd>
+              </dl>
+              <div class="product__buy">
+                <div class="product__price">$210 <small>/ kit</small></div>
+                <button class="btn btn--sm" onclick="AA.add(this)">Add to order</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-id="AA-12" data-name="Blend B-3" data-price="240" data-cat="blends">
+            <div class="product__tag">Blend</div>
+            <h3>Blend&nbsp;B-3</h3>
+            <div class="subtitle">Placeholder — replace with real product</div>
+            <div class="product__spec">
+              <dl>
+                <dt>Presentation</dt><dd>Triple vial</dd>
+                <dt>Purity</dt><dd>≥ 99.3%</dd>
+                <dt>Form</dt><dd>Lyophilized</dd>
+              </dl>
+              <div class="product__buy">
+                <div class="product__price">$240 <small>/ kit</small></div>
+                <button class="btn btn--sm" onclick="AA.add(this)">Add to order</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+    </div><!-- /catalog-root -->
+  </div>
+</section>
+
+<!-- Inquire / Contact -->
+<section class="section section--alt" id="contact">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">Inquire</p>
+      <h2>Have questions, or looking to start a conversation? We respond personally.</h2>
+    </div>
+    <div class="form-card">
+      <form id="inquiry-form" onsubmit="return AA.submitInquiry(event)">
+        <div class="form-grid">
+          <div class="field"><label>Name *</label><input type="text" name="name" required /></div>
+          <div class="field"><label>Email *</label><input type="email" name="email" required /></div>
+          <div class="field"><label>Phone <span class="opt">— Optional</span></label><input type="tel" name="phone" /></div>
+          <div class="field"><label>Instagram handle <span class="opt">— Optional</span></label><input type="text" name="instagram" /></div>
+          <div class="field">
+            <label>How did you find us? <span class="opt">— Optional</span></label>
+            <select name="source"><option value="">Select one</option><option>Instagram</option><option>Referral / Word of mouth</option><option>Search</option><option>Other</option></select>
+          </div>
+          <div class="field">
+            <label>Where are you at with peptides? <span class="opt">— Optional</span></label>
+            <select name="experience"><option value="">Select one</option><option>New to peptides</option><option>Some experience</option><option>Currently running protocols</option><option>Just learning / curious</option></select>
+          </div>
+          <div class="field field--full"><label>What's on your mind? <span class="opt">— Optional, but helpful</span></label><textarea name="message"></textarea></div>
+          <div class="honeypot" aria-hidden="true"><label>Don't fill this out if you're human:</label><input type="text" name="website" tabindex="-1" autocomplete="off" /></div>
+        </div>
+        <div style="margin-top:22px;"><button type="submit" class="btn btn--accent">Send →</button></div>
+        <p class="form-foot">Research-use-only · We respond within 24 hours.<br />Prefer email? <a href="mailto:Alignedaminos@proton.me">Alignedaminos@proton.me</a></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-col">
+      <span class="brand__name">Aligned Aminos</span>
+      <p style="color:#9a9c8e;font-size:13px;max-width:240px;margin-top:10px;">Research-grade peptides for laboratory use. Lot-traceable, third-party verified.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul><li><a href="catalog.html">Catalog</a></li><li><a href="#contact">Contact</a></li><li><a href="#" onclick="AA.openCart();return false;">Your order</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul><li><a href="mailto:Alignedaminos@proton.me">Alignedaminos@proton.me</a></li><li>Response within 24 hours</li></ul>
+    </div>
+    <div class="footer-legal">© <span id="year"></span> Aligned Aminos · All compounds RUO · Not for human consumption</div>
+  </div>
+</footer>
+
+<!-- ===================== CART DRAWER ===================== -->
+<div class="overlay" id="overlay" onclick="AA.closeCart()"></div>
+<aside class="drawer" id="cart" aria-label="Your order">
+  <div class="drawer__head">
+    <h2>Your order</h2>
+    <button class="drawer__close" onclick="AA.closeCart()" aria-label="Close">×</button>
+  </div>
+  <div class="drawer__ruo">Research-use-only · Not for human consumption</div>
+  <div class="drawer__body" id="cart-body">
+    <div class="drawer__empty">Your order is empty. Add compounds from the catalog to begin.</div>
+  </div>
+  <div class="drawer__foot">
+    <div class="subtotal-row">
+      <span class="label">Subtotal</span>
+      <span class="amount">$<span id="cart-subtotal">0</span></span>
+    </div>
+    <button class="btn btn--accent btn--block" id="checkout-btn" onclick="AA.startCheckout()" disabled>Continue to order details →</button>
+    <p class="drawer__note">Subtotal excludes shipping. No payment is taken here — we email you to confirm stock, add shipping, and arrange payment. Allow 2–4 weeks for delivery.</p>
+  </div>
+</aside>
+
+<!-- ===================== CHECKOUT MODAL ===================== -->
+<div class="modal" id="checkout">
+  <div class="modal__panel">
+    <div class="modal__head">
+      <h2 id="checkout-title">Order details</h2>
+      <button class="drawer__close" onclick="AA.closeCheckout()" aria-label="Close">×</button>
+    </div>
+    <div class="modal__body">
+
+      <!-- STEP 1 — details -->
+      <div class="steps active" id="step-details">
+        <form id="details-form">
+          <div class="form-grid">
+            <div class="field"><label>Email *</label><input type="email" name="email" required /></div>
+            <div class="field"><label>Phone *</label><input type="tel" name="phone" required /></div>
+            <div class="field field--full"><label>Shipping address *</label><input type="text" name="address" required /></div>
+            <div class="field"><label>Apt / Suite <span class="opt">— Optional</span></label><input type="text" name="apt" /></div>
+            <div class="field"><label>City *</label><input type="text" name="city" required /></div>
+            <div class="field"><label>State / Region *</label><input type="text" name="state" required /></div>
+            <div class="field"><label>ZIP / Postal *</label><input type="text" name="zip" required /></div>
+            <div class="field field--full"><label>Country *</label><input type="text" name="country" required /></div>
+            <div class="field field--full"><label>Notes <span class="opt">— Optional</span></label><textarea name="notes"></textarea></div>
+            <div class="field field--full"><label>Referral code <span class="opt">— Optional</span></label>
+              <div style="display:flex;gap:8px;"><input type="text" name="referral" /><button type="button" class="btn btn--ghost btn--sm" onclick="AA.toast('Referral noted')">Apply</button></div>
+            </div>
+          </div>
+          <label class="consent"><input type="checkbox" name="consent" required /> I understand these compounds are sold for laboratory research use only and not for human consumption.</label>
+          <div class="honeypot" aria-hidden="true"><label>Don't fill this out if you're human:</label><input type="text" name="website" tabindex="-1" autocomplete="off" /></div>
+          <div class="subtotal-row" style="margin-top:16px;"><span class="label">Subtotal</span><span class="amount">$<span class="checkout-subtotal">0</span></span></div>
+        </form>
+        <p class="drawer__note">No payment is taken here. The next screen collects your payment method and your order number.</p>
+      </div>
+
+      <!-- STEP 2 — payment -->
+      <div class="steps" id="step-payment">
+        <p style="margin-bottom:16px;">Your order <strong id="order-num-inline"></strong> is reserved. Pay with any method below to lock it in — we confirm stock and shipping once payment arrives.</p>
+        <div class="pay-tabs">
+          <div class="pay-tab active" data-pay="venmo" onclick="AA.payTab('venmo')">Venmo</div>
+          <div class="pay-tab" data-pay="zelle" onclick="AA.payTab('zelle')">Zelle</div>
+          <div class="pay-tab" data-pay="usdt" onclick="AA.payTab('usdt')">USDT</div>
+        </div>
+
+        <!-- Venmo -->
+        <div class="pay-panel active" id="pay-venmo">
+          <div class="pay-field"><div class="k">Venmo handle</div><div class="v"><span>@AlignedAminos</span><button class="copy-btn" onclick="AA.copy('@AlignedAminos', this)">Copy</button></div></div>
+          <div class="pay-field"><div class="k">Amount</div><div class="v"><span>$<span class="checkout-subtotal">0</span></span></div></div>
+          <div class="pay-field"><div class="k">Memo</div><div class="v"><span class="order-num">—</span><button class="copy-btn" onclick="AA.copyOrder(this)">Copy</button></div></div>
+          <div class="pay-warn"><strong>Put the memo exactly as shown</strong> — it's your order number, and it's how we match your payment. Changing it will delay your order.</div>
+        </div>
+
+        <!-- Zelle -->
+        <div class="pay-panel" id="pay-zelle">
+          <div class="pay-field"><div class="k">Zelle email</div><div class="v"><span>alignedaminos@proton.me</span><button class="copy-btn" onclick="AA.copy('alignedaminos@proton.me', this)">Copy</button></div></div>
+          <div class="pay-field"><div class="k">Amount</div><div class="v"><span>$<span class="checkout-subtotal">0</span></span></div></div>
+          <div class="pay-field"><div class="k">Memo</div><div class="v"><span class="order-num">—</span><button class="copy-btn" onclick="AA.copyOrder(this)">Copy</button></div></div>
+          <div class="pay-warn"><strong>Put the memo exactly as shown</strong> — it's your order number, and it's how we match your payment. Changing it will delay your order.</div>
+        </div>
+
+        <!-- USDT -->
+        <div class="pay-panel" id="pay-usdt">
+          <div class="pay-field"><div class="k">Network</div><div class="v"><span>Ethereum (ERC-20)</span></div></div>
+          <div class="pay-field"><div class="k">Amount</div><div class="v"><span><span class="checkout-subtotal">0</span> USDT</span></div></div>
+          <div class="pay-field"><div class="k">Wallet address</div><div class="v"><span style="font-size:.82rem;">0x2a92023d91dda9698dfe80d942679537ad61368e</span><button class="copy-btn" onclick="AA.copy('0x2a92023d91dda9698dfe80d942679537ad61368e', this)">Copy</button></div></div>
+          <div class="pay-warn">Send the <strong>exact amount</strong> shown — it's how we match your payment to your order. Your order is confirmed once the transfer shows on-chain.</div>
+        </div>
+      </div>
+
+      <!-- STEP 3 — receipt -->
+      <div class="steps" id="step-receipt">
+        <div class="receipt">
+          <p class="eyebrow" style="text-align:center;">Order received</p>
+          <div class="receipt__num order-num">—</div>
+          <p>This is your copy — print or save it for your records. We'll email you to confirm stock and shipping.</p>
+          <div id="receipt-lines" style="text-align:left;margin:20px 0;"></div>
+          <div class="subtotal-row"><span class="label">Subtotal</span><span class="amount">$<span class="checkout-subtotal">0</span></span></div>
+          <button class="btn btn--ghost btn--block" style="margin-top:16px;" onclick="window.print()">Print / Save</button>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal__foot" id="checkout-foot">
+      <button class="btn btn--ghost btn--sm" id="back-btn" onclick="AA.checkoutBack()">← Back</button>
+      <button class="btn btn--accent btn--sm" id="next-btn" onclick="AA.checkoutNext()">Continue →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
