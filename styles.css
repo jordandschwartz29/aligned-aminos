@@ -262,6 +262,16 @@ em { font-style: italic; }
 .subtotal-row .amount { font-family: var(--serif); font-size: 1.6rem; }
 .drawer__note { font-size: 11.5px; color: var(--ink-faint); margin: 12px 0 0; }
 
+/* order totals block */
+.totals { margin-bottom: 14px; }
+.tot-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 13.5px; color: var(--ink-soft); padding: 5px 0; }
+.tot-row--disc span:last-child { color: var(--accent); font-weight: 600; }
+.tot-row--gift span:last-child { color: var(--gold); font-weight: 600; }
+.tot-row--grand { border-top: 1px solid var(--line); margin-top: 6px; padding-top: 12px; }
+.tot-row--grand span { font-family: var(--serif); font-size: 1.4rem; color: var(--ink); }
+.meta--save { font-size: 11px; color: var(--accent); font-weight: 600; margin-top: 2px; }
+.product__price s { color: var(--ink-faint); font-weight: 400; }
+
 /* ---------- Checkout modal ---------- */
 .modal { position: fixed; inset: 0; z-index: 80; display: none; align-items: flex-start; justify-content: center; padding: 40px 16px; overflow-y: auto; }
 .modal.open { display: flex; }

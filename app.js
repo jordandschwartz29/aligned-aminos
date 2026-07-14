@@ -1,11 +1,18 @@
 /* =========================================================================
    Aligned Aminos — front-end cart + checkout
    No backend. Cart persists in localStorage. Order flow is display-only:
-   details -> payment (Venmo/Zelle/USDT) -> printable receipt.
+   details -> payment (Venmo/Zelle/Wise/USDT) -> printable receipt.
+
+   Order rules:
+     • Flat $19.99 shipping on every order (any items in cart).
+     • US Inventory items (data-us="1"): 10% off any line with qty >= 3.
+     • US Inventory: order with 2+ US Inventory vials total includes a
+       free 3 ml BAC water ($0).
    Swap payment handles/addresses in the catalog.html markup.
    ========================================================================= */
 (function () {
-  var STORE_KEY = 'aa_cart_v1';
+  var STORE_KEY = 'aa_cart_v2';
+  var SHIPPING_FLAT = 19.99;
   var cart = load();
   var currentStep = 'details';
   var currentOrder = null;
@@ -16,64 +23,102 @@
   }
   function save() { localStorage.setItem(STORE_KEY, JSON.stringify(cart)); }
 
+  function money(n) { return '$' + (Math.round(n * 100) / 100).toFixed(2); }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]; }); }
+
   function count() {
     return Object.keys(cart).reduce(function (n, k) { return n + cart[k].qty; }, 0);
   }
-  function subtotal() {
-    return Object.keys(cart).reduce(function (s, k) { return s + cart[k].price * cart[k].qty; }, 0);
+
+  /* ---------- totals engine ---------- */
+  function computeTotals() {
+    var subtotal = 0, discount = 0, usUnits = 0;
+    Object.keys(cart).forEach(function (k) {
+      var it = cart[k];
+      var line = it.price * it.qty;
+      subtotal += line;
+      if (it.us) {
+        usUnits += it.qty;
+        if (it.qty >= 3) discount += line * 0.10;
+      }
+    });
+    var hasItems = Object.keys(cart).length > 0;
+    var shipping = hasItems ? SHIPPING_FLAT : 0;
+    var freeWater = usUnits >= 2;
+    var total = subtotal - discount + shipping;
+    return { subtotal: subtotal, discount: discount, shipping: shipping, total: total, freeWater: freeWater, usUnits: usUnits, hasItems: hasItems };
+  }
+
+  function totRow(label, value, mod) {
+    return '<div class="tot-row' + (mod ? ' tot-row--' + mod : '') + '"><span>' + label + '</span><span>' + value + '</span></div>';
+  }
+  function totalsHTML(t) {
+    if (!t.hasItems) return '';
+    var h = '';
+    h += totRow('Subtotal', money(t.subtotal));
+    if (t.discount > 0) h += totRow('US Inventory discount (10%)', '&minus;' + money(t.discount), 'disc');
+    if (t.freeWater) h += totRow('Free 3&nbsp;ml BAC water', 'Included', 'gift');
+    h += totRow('Shipping (flat)', money(t.shipping));
+    h += totRow('Total', money(t.total), 'grand');
+    return h;
   }
 
   /* ---------- rendering ---------- */
   function renderCount() {
     document.querySelectorAll('[data-cart-count]').forEach(function (el) { el.textContent = count(); });
   }
-  function renderSubtotals() {
-    var s = subtotal();
-    var main = document.getElementById('cart-subtotal');
-    if (main) main.textContent = s;
-    document.querySelectorAll('.checkout-subtotal').forEach(function (el) { el.textContent = s; });
+  function renderMoney() {
+    var t = computeTotals();
+    ['cart-totals', 'totals-details', 'totals-receipt'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.innerHTML = totalsHTML(t);
+    });
+    document.querySelectorAll('.amt-total').forEach(function (el) { el.textContent = (Math.round(t.total * 100) / 100).toFixed(2); });
     var btn = document.getElementById('checkout-btn');
-    if (btn) btn.disabled = count() === 0;
+    if (btn) btn.disabled = !t.hasItems;
+    renderCount();
   }
   function renderCart() {
     var body = document.getElementById('cart-body');
-    if (!body) return;
-    var ids = Object.keys(cart);
-    if (!ids.length) {
-      body.innerHTML = '<div class="drawer__empty">Your order is empty. Add compounds from the catalog to begin.</div>';
-      renderSubtotals(); renderCount(); return;
+    if (body) {
+      var ids = Object.keys(cart);
+      if (!ids.length) {
+        body.innerHTML = '<div class="drawer__empty">Your order is empty. Add compounds from the catalog to begin.</div>';
+      } else {
+        var html = '';
+        ids.forEach(function (id) {
+          var it = cart[id];
+          var bulk = (it.us && it.qty >= 3) ? '<div class="meta meta--save">10% bulk discount applied</div>' : '';
+          html += '' +
+            '<div class="line-item">' +
+              '<div class="line-item__info">' +
+                '<h4>' + esc(it.name) + '</h4>' +
+                '<div class="meta">' + esc(it.id) + ' · ' + money(it.price) + ' / unit' + (it.us ? ' · US' : '') + '</div>' +
+                bulk +
+                '<div class="qty">' +
+                  '<button onclick="AA.dec(\'' + id + '\')" aria-label="Decrease">−</button>' +
+                  '<span>' + it.qty + '</span>' +
+                  '<button onclick="AA.inc(\'' + id + '\')" aria-label="Increase">+</button>' +
+                '</div>' +
+              '</div>' +
+              '<div style="text-align:right;">' +
+                '<div class="line-item__price">' + money(it.price * it.qty) + '</div>' +
+                '<button class="line-item__remove" onclick="AA.remove(\'' + id + '\')">Remove</button>' +
+              '</div>' +
+            '</div>';
+        });
+        body.innerHTML = html;
+      }
     }
-    var html = '';
-    ids.forEach(function (id) {
-      var it = cart[id];
-      html += '' +
-        '<div class="line-item">' +
-          '<div class="line-item__info">' +
-            '<h4>' + esc(it.name) + '</h4>' +
-            '<div class="meta">' + esc(it.id) + ' · $' + it.price + ' / unit</div>' +
-            '<div class="qty">' +
-              '<button onclick="AA.dec(\'' + id + '\')" aria-label="Decrease">−</button>' +
-              '<span>' + it.qty + '</span>' +
-              '<button onclick="AA.inc(\'' + id + '\')" aria-label="Increase">+</button>' +
-            '</div>' +
-          '</div>' +
-          '<div style="text-align:right;">' +
-            '<div class="line-item__price">$' + (it.price * it.qty) + '</div>' +
-            '<button class="line-item__remove" onclick="AA.remove(\'' + id + '\')">Remove</button>' +
-          '</div>' +
-        '</div>';
-    });
-    body.innerHTML = html;
-    renderSubtotals(); renderCount();
+    renderMoney();
   }
-  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]; }); }
 
   /* ---------- cart ops ---------- */
   function add(btn) {
     var card = btn.closest('.product');
     var id = card.dataset.id;
     if (cart[id]) cart[id].qty++;
-    else cart[id] = { id: id, name: card.dataset.name, price: parseFloat(card.dataset.price), qty: 1 };
+    else cart[id] = { id: id, name: card.dataset.name, price: parseFloat(card.dataset.price), qty: 1, us: card.dataset.us === '1' };
     save(); renderCart(); openCart(); toast(card.dataset.name + ' added');
   }
   function inc(id) { if (cart[id]) { cart[id].qty++; save(); renderCart(); } }
@@ -95,6 +140,7 @@
     if (count() === 0) return;
     closeCart();
     goStep('details');
+    renderMoney();
     document.getElementById('checkout').classList.add('open');
   }
   function closeCheckout() { document.getElementById('checkout').classList.remove('open'); }
@@ -122,10 +168,11 @@
       currentOrder = makeOrderNumber();
       document.querySelectorAll('.order-num').forEach(function (el) { el.textContent = currentOrder; });
       var inline = document.getElementById('order-num-inline'); if (inline) inline.textContent = currentOrder;
-      renderSubtotals();
+      renderMoney();
       goStep('payment');
     } else if (currentStep === 'payment') {
       buildReceipt();
+      renderMoney();
       goStep('receipt');
       toast('Order ' + currentOrder + ' recorded');
     }
@@ -146,11 +193,15 @@
   function buildReceipt() {
     var box = document.getElementById('receipt-lines');
     if (!box) return;
+    var t = computeTotals();
     var html = '';
     Object.keys(cart).forEach(function (id) {
       var it = cart[id];
-      html += '<div class="receipt__line"><span>' + esc(it.name) + ' × ' + it.qty + '</span><span>$' + (it.price * it.qty) + '</span></div>';
+      html += '<div class="receipt__line"><span>' + esc(it.name) + ' × ' + it.qty + '</span><span>' + money(it.price * it.qty) + '</span></div>';
     });
+    if (t.freeWater) {
+      html += '<div class="receipt__line"><span>Free 3&nbsp;ml BAC water × 1</span><span>$0.00</span></div>';
+    }
     box.innerHTML = html;
   }
 
@@ -162,11 +213,11 @@
 
   /* ---------- utilities ---------- */
   function copy(text, btn) {
-    navigator.clipboard && navigator.clipboard.writeText(text);
+    if (navigator.clipboard) navigator.clipboard.writeText(text);
     flash(btn);
   }
   function copyOrder(btn) {
-    if (currentOrder) { navigator.clipboard && navigator.clipboard.writeText(currentOrder); flash(btn); }
+    if (currentOrder && navigator.clipboard) { navigator.clipboard.writeText(currentOrder); flash(btn); }
   }
   function flash(btn) { var t = btn.textContent; btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = t; }, 1200); }
 
@@ -211,7 +262,6 @@
     var y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
     renderCart();
     initCatNav();
-    // open cart if URL hash is #cart
     if (location.hash === '#cart') setTimeout(openCart, 100);
   }
   document.addEventListener('DOMContentLoaded', init);
